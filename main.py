@@ -14,9 +14,13 @@ from wtforms.validators import DataRequired, Optional, Email
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
 from flask_debugtoolbar import DebugToolbarExtension
+import os
+from dotenv import load_dotenv
+
+load_dotenv("C:/Users/hilme/PycharmProjects/DAY69Addingusers_to_blog/EnvVar/.env")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 ckeditor = CKEditor(app)
 Bootstrap(app)
@@ -48,7 +52,7 @@ def admin_only(f):
     return decorated_function
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
