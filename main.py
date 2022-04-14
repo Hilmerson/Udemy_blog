@@ -17,7 +17,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 import os
 from dotenv import load_dotenv
 
-load_dotenv("C:/Users/hilme/PycharmProjects/DAY69Addingusers_to_blog/EnvVar/.env")
+load_dotenv(".env")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
